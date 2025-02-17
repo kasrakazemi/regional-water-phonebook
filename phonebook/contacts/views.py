@@ -35,7 +35,7 @@ def editor_login(request):
         if user is not None:
             if is_editor(user):  # Check if user is in "Editor" group
                 login(request, user)
-                return redirect("admin_panel")  # Redirect to contacts admin panel
+                return redirect("/contacts-admin/")  # Redirect to contacts admin panel
             else:
                 return render(request, "contacts/editor_login.html", {"error": "Access Denied. You are not an Editor."})
         else:
@@ -49,8 +49,8 @@ def editor_logout(request):
     return redirect("editor_login")  # Redirect to login page after logout
 
 # Protect the admin panel - only logged-in "Editor" users can access
-@login_required(login_url="/contacts/admin/login/")  # Redirects unauthenticated users
-@user_passes_test(is_editor, login_url="/contacts/admin/login/")
+@login_required(login_url="/contacts-admin/login/")  
+@user_passes_test(is_editor, login_url="/contacts-admin/login/")
 def admin_panel(request):
     """ Single admin panel for managing contacts: add, edit, and delete. """
     if request.method == "POST":

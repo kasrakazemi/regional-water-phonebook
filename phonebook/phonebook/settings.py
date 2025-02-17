@@ -12,7 +12,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-LOGIN_URL = "/contacts/admin/login/"
+LOGIN_URL = '/contacts-admin/login/'
 
 # Application definition
 
